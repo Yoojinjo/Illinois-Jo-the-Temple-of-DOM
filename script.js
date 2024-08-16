@@ -38,6 +38,8 @@ function goLoot() {
         lootResult = Math.floor((Math.random() - 0.4 )* 10);
         score += lootResult;
         text.innerHTML = `You got ${lootResult} points. Current score: ${score}, Bank: ${bank}`;
+        const clickedbox = document.querySelector("lootbox")
+        clickedbox.remove()
     });
 }
 
