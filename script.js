@@ -5,14 +5,15 @@ game over condition */
 
 const directionButton = document.getElementById("directions")
 const startButton = document.getElementById("start")
-const textArea = document.getElementById("text")
+const textArea = document.getElementById("text-area")
+const text = document.getElementById("text")
 const gamezone = document.getElementById("gamezone")
 const menu = document.getElementById("menu")
 let score = 10
 
-directionButton.addEventListener("click", ()=>{textArea.innerHTML ="testcode"})
+directionButton.addEventListener("click", ()=>{text.innerHTML ="testcode"})
 
-startButton.addEventListener("click", ()=>{textArea.innerHTML =`Your score: ${score}`;
+startButton.addEventListener("click", ()=>{text.innerHTML =`Your score: ${score}`;
 makeLoop()
 score-- 
 })
