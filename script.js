@@ -9,16 +9,18 @@ const textArea = document.getElementById("text-area");
 const text = document.getElementById("text");
 const gamezone = document.getElementById("gamezone");
 const menu = document.getElementById("menu");
-let score = 10;
+const bankButton = document.getElementById("bank")
+let score = 0;
+let bank = 10
 
 directionButton.addEventListener("click", () => {
-    text.innerHTML = "testcode";
+    text.innerHTML = "Each box you open adds a random number of points. Every new box loses you some points";
 });
 
 startButton.addEventListener("click", () => {
-    text.innerHTML = `Your score: ${score}`;
+    text.innerHTML = `Your points: ${score}, Your bank: ${bank}`;
     makeLoop();
-    score--;
+    bank--;
 });
 
 function makeLoop() {
@@ -35,6 +37,14 @@ function goLoot() {
     lootBox.addEventListener("click", () => {
         lootResult = Math.floor((Math.random() - 0.4 )* 10);
         score += lootResult;
-        text.innerHTML = `You got ${lootResult} points. Your current score: ${score}`;
+        text.innerHTML = `You got ${lootResult} points. Current score: ${score}, Bank: ${bank}`;
     });
 }
+
+// clicking bank will add score to bank, reset score points and remove the loot box
+
+bankButton.addEventListener("click", ()=>{
+    bank += score;
+    score = 0;
+    text.innerHTML = `You banked your winnings. Current score: ${score}, Bank: ${bank}`;
+})
