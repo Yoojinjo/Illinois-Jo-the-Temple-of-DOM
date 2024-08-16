@@ -48,15 +48,17 @@ function goLoot() {
     const lootBox = document.querySelector("lootbox");
 
     // colors change on mouse hover
-    const colors = ['yellow', 'green', 'blue', 'purple', 'red', 'orange'];
+    const colors = ["yellow", "green", "blue", "purple", "red", "orange"];
     let colorInterval;
     lootBox.addEventListener("mouseover", mouseOver);
     function mouseOver() {
-        colorInterval = setInterval(()=>{
-        lootBox.style.background = colors[Math.floor(Math.random()*colors.length)];
-    }, 50)}
+        colorInterval = setInterval(() => {
+            lootBox.style.background =
+                colors[Math.floor(Math.random() * colors.length)];
+        }, 50);
+    }
 
-// stop colorchange
+    // stop colorchange
     lootBox.addEventListener("mouseout", mouseOut);
     function mouseOut() {
         clearInterval(colorInterval);
@@ -68,9 +70,13 @@ function goLoot() {
         score += lootResult;
         text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
         const clickedbox = document.querySelector("lootbox");
-        lootBox.remove(clickedbox);
+        clearInterval(colorInterval);
+        lootBox.addEventListener("mouseout", mouseOut);
+        function mouseOut() {
+            lootBox.remove(clickedbox);
+        }
         scoreUpdate();
-        goLoot();
+        // goLoot();
     });
 }
 
