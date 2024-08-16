@@ -20,7 +20,7 @@ directionButton.addEventListener("click", () => {
 startButton.addEventListener("click", () => {
     text.innerHTML = `Your points: ${score}, Your bank: ${bank}`;
     makeLoop();
-    bank--;
+    score--;
 });
 
 function makeLoop() {
@@ -35,11 +35,12 @@ function makeLoop() {
 function goLoot() {
     const lootBox = document.querySelector("lootbox");
     lootBox.addEventListener("click", () => {
-        lootResult = Math.floor((Math.random() - 0.4 )* 10);
+        lootResult = Math.floor((Math.random() - 0.3 )* 10);
         score += lootResult;
         text.innerHTML = `You got ${lootResult} points. Current score: ${score}, Bank: ${bank}`;
         const clickedbox = document.querySelector("lootbox")
-        clickedbox.remove()
+        lootBox.remove(clickedbox)
+        goLoot()
     });
 }
 
