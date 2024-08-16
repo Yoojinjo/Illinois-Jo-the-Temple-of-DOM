@@ -1,0 +1,28 @@
+body {
+    background-color: cornsilk;
+}
+div {
+   
+}
+
+#title, #text, #gamezone {
+    height:auto;
+    width: 50%;
+  display: flex;   
+justify-content: center;
+align-items: center;
+    text-align: center
+}
+
+#title {
+background-color: aquamarine;
+}
+
+#text {
+background-color: violet;
+}
+
+#gamezone {
+background-color: steelblue;
+min-height: 400px;
+}
