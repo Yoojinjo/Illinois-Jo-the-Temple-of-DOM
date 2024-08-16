@@ -12,15 +12,17 @@ const menu = document.getElementById("menu");
 const bankButton = document.getElementById("bank")
 let score = 0;
 let bank = 10
+let strikes = 0
 
 directionButton.addEventListener("click", () => {
-    text.innerHTML = "Each box you open adds a random number of points. Every new box loses you some points";
+    text.innerText = "Each box you open adds a random number of points. Every new box loses you some points";
 });
 
 startButton.addEventListener("click", () => {
-    text.innerHTML = `Your points: ${score}, Your bank: ${bank}`;
+    text.innerText = `Your points: ${score}, Your bank: ${bank}`;
     makeLoop();
     score--;
+    
 });
 
 function makeLoop() {
@@ -40,7 +42,7 @@ function goLoot() {
         text.innerHTML = `You got ${lootResult} points. Current score: ${score}, Bank: ${bank}`;
         const clickedbox = document.querySelector("lootbox")
         lootBox.remove(clickedbox)
-        goLoot()
+      goLoot()  
     });
 }
 
