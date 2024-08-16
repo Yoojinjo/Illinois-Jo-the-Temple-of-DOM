@@ -17,6 +17,7 @@ makeLoop()
 score-- 
 })
 function makeLoop () {
+startButton.innerText = "Another Box!"
 const makeLootBox = document.createElement("lootBox")
 makeLootBox.innerText = "Loot Box";
 gamezone.appendChild(makeLootBox); }
