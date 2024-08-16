@@ -1,28 +1,44 @@
 body {
     background-color: cornsilk;
 }
-div {
-   
+#menu {
+    height: auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    min-height: 50px;
+    background-color: steelblue;
 }
 
-#title, #text, #gamezone {
-    height:auto;
+#title,
+#text,
+#gamezone {
+    height: auto;
     width: 50%;
-  display: flex;   
-justify-content: center;
-align-items: center;
-    text-align: center
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #title {
-background-color: aquamarine;
+    background-color: aquamarine;
 }
 
 #text {
-background-color: violet;
+    background-color: violet;
 }
 
 #gamezone {
-background-color: steelblue;
-min-height: 400px;
+    background-color: steelblue;
+    min-height: 300px;
+}
+
+lootbox {
+    border: solid 2px black;
+    padding: 10px;
+    background-color: yellow;
+    border-radius: 10px;
 }
