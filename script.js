@@ -3,24 +3,38 @@ features needed. a score tracker, a life counter that updates.
 game loop?
 game over condition */
 
-const directionButton = document.getElementById("directions")
-const startButton = document.getElementById("start")
-const textArea = document.getElementById("text-area")
-const text = document.getElementById("text")
-const gamezone = document.getElementById("gamezone")
-const menu = document.getElementById("menu")
-let score = 10
+const directionButton = document.getElementById("directions");
+const startButton = document.getElementById("start");
+const textArea = document.getElementById("text-area");
+const text = document.getElementById("text");
+const gamezone = document.getElementById("gamezone");
+const menu = document.getElementById("menu");
+let score = 10;
 
-directionButton.addEventListener("click", ()=>{text.innerHTML ="testcode"})
+directionButton.addEventListener("click", () => {
+    text.innerHTML = "testcode";
+});
 
-startButton.addEventListener("click", ()=>{text.innerHTML =`Your score: ${score}`;
-makeLoop()
-score-- 
-})
-function makeLoop () {
-startButton.innerText = "Another Box!"
-const makeLootBox = document.createElement("lootBox")
-makeLootBox.innerText = "Loot Box";
-gamezone.appendChild(makeLootBox); }
+startButton.addEventListener("click", () => {
+    text.innerHTML = `Your score: ${score}`;
+    makeLoop();
+    score--;
+});
 
-// function scoreCounter =
+function makeLoop() {
+    startButton.innerText = "Another Box!";
+    const makeLootBox = document.createElement("lootBox");
+    makeLootBox.innerText = "Loot Box";
+    gamezone.appendChild(makeLootBox);
+    goLoot();
+}
+
+// function onclick of loot box, the score will change by a random amount
+function goLoot() {
+    const lootBox = document.querySelector("lootbox");
+    lootBox.addEventListener("click", () => {
+        lootResult = Math.floor((Math.random() - 0.4 )* 10);
+        score += lootResult;
+        text.innerHTML = `You got ${lootResult} points. Your current score: ${score}`;
+    });
+}
