@@ -17,7 +17,7 @@ let boxCount = 0;
 
 directionButton.addEventListener("click", () => {
     text.innerText =
-        "Each box you open adds a random number of points. Every new box costs. Bank points to keep them";
+        "Each box you open adds a random number of points. Every new box costs a point from your Bank. If you get 3 strikes, you lose all your points. Banked points can't be lost to on a strikeout."
 });
 
 startButton.addEventListener("click", () => {
@@ -34,7 +34,8 @@ function scoreUpdate() {
 
 function makeLoot() {
     boxCount++;
-    startButton.innerText = "Another Box! (Minus -1 point)";
+    startButton.innerText = "Another Box! (Minus -1 point to bank)";
+    bankButton.innerText = `Bank: ${bank}`;
     const makeLootBox = document.createElement("lootBox");
     makeLootBox.innerText = "Loot Box";
     gamezone.appendChild(makeLootBox);
@@ -76,7 +77,7 @@ function goLoot() {
             lootBox.remove(clickedbox);
         }
         scoreUpdate();
-        // goLoot();
+        goLoot();
     });
 }
 

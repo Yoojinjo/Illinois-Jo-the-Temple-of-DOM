@@ -1,9 +1,17 @@
 body {
     background-color: cornsilk;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+#main {
+    width: 80%;
+}
+
 #menu {
     height: auto;
-    width: 80%;
+    
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -12,13 +20,11 @@ body {
     background-color: steelblue;
 }
 
-
-
 #title,
 #text-area,
 #gamezone {
     height: auto;
-    width: 80%;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,8 +38,6 @@ body {
 #text-area {
     background-color: violet;
 }
-
-
 
 #gamezone {
     background-color: steelblue;
