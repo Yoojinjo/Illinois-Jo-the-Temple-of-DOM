@@ -7,16 +7,18 @@ const directionButton = document.getElementById("directions")
 const startButton = document.getElementById("start")
 const textArea = document.getElementById("text")
 const gamezone = document.getElementById("gamezone")
-
-
+const menu = document.getElementById("menu")
+let score = 10
 
 directionButton.addEventListener("click", ()=>{textArea.innerHTML ="testcode"})
 
-startButton.addEventListener("click", ()=>{textArea.innerHTML ="test start";
+startButton.addEventListener("click", ()=>{textArea.innerHTML =`Your score: ${score}`;
 makeLoop()
-
+score-- 
 })
 function makeLoop () {
 const makeLootBox = document.createElement("lootBox")
 makeLootBox.innerText = "Loot Box";
 gamezone.appendChild(makeLootBox); }
+
+// function scoreCounter =
