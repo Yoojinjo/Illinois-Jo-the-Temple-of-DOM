@@ -10,13 +10,16 @@ const text = document.getElementById("text");
 const gamezone = document.getElementById("gamezone");
 const menu = document.getElementById("menu");
 const bankButton = document.getElementById("bank");
+const extraInfoSpace = document.getElementById("extra-info")
+const scoreInfoSpace = document.getElementById("score")
+const strikeZone = document.getElementById("strikeZone")
 let score = 0;
 let bank = 10;
 let strikes = 0;
 let boxCount = 0;
 
 directionButton.addEventListener("click", () => {
-    text.innerText =
+    extraInfoSpace.innerText =
         "Each box you open adds a random number of points. Every new box costs a point from your Bank. If you get 3 strikes, you lose all your points. Banked points can't be lost to on a strikeout.";
 });
 
@@ -69,23 +72,23 @@ function goLoot() {
     lootBox.addEventListener("click", () => {
         lootResult = Math.floor((Math.random() - 0.3) * 10);
         score += lootResult;
-        text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
+        scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> ScorePoints: ${score}, Bank: ${bank}`;
         const clickedbox = document.querySelector("lootbox");
 
         // add strikes for red and orange
         if (clickedbox.style.background == "red") {
             console.log("2 strikes");
-            text.innerText = `Very unlucky. You got 2 strikes!`
+            extraInfoSpace.innerHTML = `Very unlucky. You got 2 strikes!`
             strikes++;
             strikes++
         } else if (clickedbox.style.background == "orange") {
             console.log("1 strikes");
-            text.innerText = `Sorry, You got a strike, be more careful!`
+            extraInfoSpace.innerHTML = `Sorry, You got a strike, be more careful!`
             strikes++
         } 
         if (strikes >= 3) {
             console.log("Game over");
-            text.innerText = `Your game ends here`
+            scoreInfoSpace.innerHTML = `You struck out!! <br> Your game ends here`
         }
 
         // clear box

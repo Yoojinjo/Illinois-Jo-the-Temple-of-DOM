@@ -21,10 +21,8 @@ body {
 }
 
 #title,
-#text-area,
-#gamezone {
+#text-area, #gamezone, #score, #extra-info, #strikezone{
     height: auto;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,12 +36,26 @@ body {
 #text-area {
     background-color: violet;
 }
+#score { 
+    background-color: steelblue;
+    min-height: 50px;
+}
+
+#extra-info {
+    background-color: steelblue;
+    min-height: 50px;
+}
 
 #gamezone {
     background-color: steelblue;
-    min-height: 300px;
-}
+    min-height: 200px;
 
+}
+#strikezone {
+    background-color: steelblue;
+    min-height: 200px;
+
+}
 lootbox {
     border: solid 2px black;
     padding: 10px;
