@@ -9,12 +9,12 @@ const textArea = document.getElementById("text-area");
 const text = document.getElementById("text");
 const gamezone = document.getElementById("gamezone");
 const menu = document.getElementById("menu");
-const bankButton = document.getElementById("bank");
+const resetButton = document.getElementById("reset");
 const extraInfoSpace = document.getElementById("extra-info")
 const scoreInfoSpace = document.getElementById("score")
 const strikeZone = document.getElementById("strikeZone")
 let score = 0;
-let bank = 10;
+let bank = 0;
 let strikes = 0;
 let boxCount = 0;
 
@@ -25,9 +25,15 @@ directionButton.addEventListener("click", () => {
 
 startButton.addEventListener("click", () => {
     makeLoot();
-    score--;
-    scoreUpdate();
 });
+
+resetButton.addEventListener("click", () => {
+     score = 0;
+     bank = 0;
+     strikes = 0;
+return (score, bank, strikes)
+})
+
 
 function scoreUpdate() {
     text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
@@ -37,8 +43,8 @@ function scoreUpdate() {
 
 function makeLoot() {
     boxCount++;
-    startButton.innerText = "Another Box! (Minus -1 point to bank)";
-    bankButton.innerText = `Bank: ${bank}`;
+    // startButton.innerText = "Another Box! (Minus -1 point to bank)";
+    // bankButton.innerText = `Bank: ${bank}`;
     const makeLootBox = document.createElement("lootBox");
     makeLootBox.innerText = "Loot Box";
     gamezone.appendChild(makeLootBox);
@@ -104,9 +110,9 @@ function goLoot() {
 
 // clicking bank will add score to bank, reset score points and remove the loot box
 
-bankButton.addEventListener("click", () => {
-    bank += score;
-    score = 0;
-    text.innerHTML = `You banked your winnings. Current score: ${score}, Bank: ${bank}`;
-    scoreUpdate();
-});
+// bankButton.addEventListener("click", () => {
+//     bank += score;
+//     score = 0;
+//     text.innerHTML = `You banked your winnings. Current score: ${score}, Bank: ${bank}`;
+//     scoreUpdate();
+// });
