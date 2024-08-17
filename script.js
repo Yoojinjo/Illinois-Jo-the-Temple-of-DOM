@@ -10,7 +10,7 @@ const text = document.getElementById("text");
 const gamezone = document.getElementById("gamezone");
 const menu = document.getElementById("menu");
 const resetButton = document.getElementById("reset");
-const extraInfoSpace = document.getElementById("extra-info");
+let extraInfoSpace = document.getElementById("extra-info");
 const scoreInfoSpace = document.getElementById("score");
 const strikeZone = document.getElementById("strikeZone");
 const threeStrikes = document.getElementsByClassName("pic");
@@ -18,7 +18,6 @@ const threeStrikes = document.getElementsByClassName("pic");
 let score = 0;
 let bank = 0;
 let strikes = 0;
-let boxCount = 0;
 
 directionButton.addEventListener("click", () => {
     extraInfoSpace.innerText =
@@ -48,7 +47,7 @@ function scoreUpdate() {
 }
 
 function makeGoStop() {
-    boxCount++;
+    
     text.innerText = "How far can you push your luck?";
     // bankButton.innerText = `Bank: ${bank}`;
     const makeGo = document.createElement("go");
@@ -82,13 +81,14 @@ function goLoot() {
         clearInterval(colorInterval);
         goBox.style.background = "green";
     }
-    // function onclick of loot box, the score will change by a random amount
+    // SCORING onclick of loot box, the score will change by a random amount
     goBox.addEventListener("click", () => {
+        
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
-        scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> ScorePoints: ${score}, Bank: ${bank}`;
-        const clickedbox = document.querySelector("go");
+        scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> Temporary Score: ${score}, Bank: ${bank}`;
 
+        const clickedbox = document.querySelector("go");
         // add strikes for red and orange
         if (clickedbox.style.background == "red") {
             console.log("2 strikes");
@@ -112,26 +112,16 @@ function goLoot() {
         if (strikes >= 3) {
             document.getElementById("strike3").style.visibility = "visible";
             console.log("Game over");
-            gamezone.innerHTML = `You struck out!! <br> Your game ends here!!`;
+            gamezone.innerHTML = `<strong>You struck out!! <br> Your game ends here!! </strong> Your score is ${bank} points. <br> Reset and try again!`;
         }
+    });
 
-        // clear box
-        clearInterval(colorInterval);
-        goBox.addEventListener("mouseout", mouseOut);
-        function mouseOut() {
-            // lootBox.remove(clickedbox);
-            text.innerHTML = "";
-        }
-        scoreUpdate();
-        // goLoot();
+// BANKING POINTS
+    const stopBox = document.querySelector("stop")
+    stopBox.addEventListener("click", () => {
+        bank += score;
+        score = 0;
+        scoreInfoSpace.innerHTML = `You banked your winnings. Current score: ${score}, Bank: ${bank}`;
+        
     });
 }
-
-// clicking bank will add score to bank, reset score points and remove the loot box
-
-// bankButton.addEventListener("click", () => {
-//     bank += score;
-//     score = 0;
-//     text.innerHTML = `You banked your winnings. Current score: ${score}, Bank: ${bank}`;
-//     scoreUpdate();
-// });
