@@ -13,6 +13,7 @@ const resetButton = document.getElementById("reset");
 const extraInfoSpace = document.getElementById("extra-info");
 const scoreInfoSpace = document.getElementById("score");
 const strikeZone = document.getElementById("strikeZone");
+const threeStrikes = document.getElementsByClassName("pic")
 
 let score = 0;
 let bank = 0;
@@ -34,8 +35,13 @@ resetButton.addEventListener("click", () => {
     strikes = 0;
     extraInfoSpace.innerHTML = "";
     scoreInfoSpace.innerHTML = "";
+    gamezone.innerHTML = ""
+    document.getElementById("strike1").style.visibility = "hidden"
+document.getElementById("strike2").style.visibility = "hidden"
+document.getElementById("strike3").style.visibility = "hidden"
 
-    return score, bank, strikes;
+
+    // return score, bank, strikes;
 });
 
 function scoreUpdate() {
@@ -91,16 +97,21 @@ function goLoot() {
             extraInfoSpace.innerHTML = `Very unlucky. You got 2 strikes!`;
             strikes++;
             strikes++;
-        } else if (clickedbox.style.background == "orange") {
+        }
+        if (clickedbox.style.background == "orange") {
             console.log("1 strikes");
             extraInfoSpace.innerHTML = `You got a strike, be more careful!`;
             strikes++;
         }
-        if (strikes == 1) {
+
+        // strike counter
+        if (strikes >= 1) {
             document.getElementById("strike1").style.visibility = "visible";
-        } if (strikes == 2) {
+        }
+        if (strikes >= 2) {
             document.getElementById("strike2").style.visibility = "visible";
-        } if (strikes == 3) {
+        }
+        if (strikes >= 3) {
             document.getElementById("strike3").style.visibility = "visible";
             console.log("Game over");
             gamezone.innerHTML = `You struck out!! <br> Your game ends here!!`;

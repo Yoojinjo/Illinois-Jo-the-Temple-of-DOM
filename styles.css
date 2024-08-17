@@ -66,8 +66,9 @@ lootbox {
 
 .pic {
     width: 100px;
+    visibility: hidden;
 }
 
 #strike1, #strike2, #strike3{
-    visibility: hidden;
+    
 }
