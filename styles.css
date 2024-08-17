@@ -63,3 +63,11 @@ lootbox {
     border-radius: 10px;
     transition: background-color 0.3s ease;
 }
+
+.pic {
+    width: 100px;
+}
+
+#strike1, #strike2, #strike3{
+    visibility: hidden;
+}

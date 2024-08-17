@@ -10,9 +10,10 @@ const text = document.getElementById("text");
 const gamezone = document.getElementById("gamezone");
 const menu = document.getElementById("menu");
 const resetButton = document.getElementById("reset");
-const extraInfoSpace = document.getElementById("extra-info")
-const scoreInfoSpace = document.getElementById("score")
-const strikeZone = document.getElementById("strikeZone")
+const extraInfoSpace = document.getElementById("extra-info");
+const scoreInfoSpace = document.getElementById("score");
+const strikeZone = document.getElementById("strikeZone");
+
 let score = 0;
 let bank = 0;
 let strikes = 0;
@@ -28,30 +29,28 @@ startButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", () => {
-     score = 0;
-     bank = 0;
-     strikes = 0;
-     extraInfoSpace.innerHTML = ""
-     scoreInfoSpace.innerHTML = ""
+    score = 0;
+    bank = 0;
+    strikes = 0;
+    extraInfoSpace.innerHTML = "";
+    scoreInfoSpace.innerHTML = "";
 
-return (score, bank, strikes)
-})
-
+    return score, bank, strikes;
+});
 
 function scoreUpdate() {
     // text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
     // startButton.innerText = `RollingScore: ${score}`;
-    bankButton.innerText = `Add ${score} ScorePoints to Bank: ${bank}`;
+    // bankButton.innerText = `Add ${score} ScorePoints to Bank: ${bank}`;
 }
 
 function makeLoot() {
     boxCount++;
-   text.innerText = "How far can you push your luck?";
+    text.innerText = "How far can you push your luck?";
     // bankButton.innerText = `Bank: ${bank}`;
     const makeLootBox = document.createElement("lootBox");
     makeLootBox.innerText = "Loot Box";
     gamezone.appendChild(makeLootBox);
-
 
     goLoot();
     scoreUpdate();
@@ -81,7 +80,7 @@ function goLoot() {
     }
 
     lootBox.addEventListener("click", () => {
-        lootResult = Math.floor((Math.random()) * 10);
+        lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
         scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> ScorePoints: ${score}, Bank: ${bank}`;
         const clickedbox = document.querySelector("lootbox");
@@ -89,17 +88,22 @@ function goLoot() {
         // add strikes for red and orange
         if (clickedbox.style.background == "red") {
             console.log("2 strikes");
-            extraInfoSpace.innerHTML = `Very unlucky. You got 2 strikes!`
+            extraInfoSpace.innerHTML = `Very unlucky. You got 2 strikes!`;
             strikes++;
-            strikes++
+            strikes++;
         } else if (clickedbox.style.background == "orange") {
             console.log("1 strikes");
-            extraInfoSpace.innerHTML = `You got a strike, be more careful!`
-            strikes++
-        } 
-        if (strikes >= 3) {
+            extraInfoSpace.innerHTML = `You got a strike, be more careful!`;
+            strikes++;
+        }
+        if (strikes == 1) {
+            document.getElementById("strike1").style.visibility = "visible";
+        } if (strikes == 2) {
+            document.getElementById("strike2").style.visibility = "visible";
+        } if (strikes == 3) {
+            document.getElementById("strike3").style.visibility = "visible";
             console.log("Game over");
-            scoreInfoSpace.innerHTML = `You struck out!! <br> Your game ends here!!`
+            gamezone.innerHTML = `You struck out!! <br> Your game ends here!!`;
         }
 
         // clear box
@@ -107,7 +111,7 @@ function goLoot() {
         lootBox.addEventListener("mouseout", mouseOut);
         function mouseOut() {
             // lootBox.remove(clickedbox);
-            text.innerHTML = ""
+            text.innerHTML = "";
         }
         scoreUpdate();
         // goLoot();
