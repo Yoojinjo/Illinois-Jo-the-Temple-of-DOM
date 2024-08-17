@@ -26,7 +26,7 @@ directionButton.addEventListener("click", () => {
 });
 
 startButton.addEventListener("click", () => {
-    makeLoot();
+    makeGoStop();
 });
 
 resetButton.addEventListener("click", () => {
@@ -47,7 +47,7 @@ function scoreUpdate() {
     // bankButton.innerText = `Add ${score} ScorePoints to Bank: ${bank}`;
 }
 
-function makeLoot() {
+function makeGoStop() {
     boxCount++;
     text.innerText = "How far can you push your luck?";
     // bankButton.innerText = `Bank: ${bank}`;
