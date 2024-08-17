@@ -13,7 +13,7 @@ const resetButton = document.getElementById("reset");
 const extraInfoSpace = document.getElementById("extra-info");
 const scoreInfoSpace = document.getElementById("score");
 const strikeZone = document.getElementById("strikeZone");
-const threeStrikes = document.getElementsByClassName("pic")
+const threeStrikes = document.getElementsByClassName("pic");
 
 let score = 0;
 let bank = 0;
@@ -22,7 +22,7 @@ let boxCount = 0;
 
 directionButton.addEventListener("click", () => {
     extraInfoSpace.innerText =
-        "Each box you open adds a random number of points. Every new box costs a point from your Bank. If you get 3 strikes, you lose all your points. Banked points can't be lost to on a strikeout.";
+        "Each box you open adds a random number of points. If you get 3 strikes, you lose all your points. Decide when to stop and bank your points!";
 });
 
 startButton.addEventListener("click", () => {
@@ -35,13 +35,10 @@ resetButton.addEventListener("click", () => {
     strikes = 0;
     extraInfoSpace.innerHTML = "";
     scoreInfoSpace.innerHTML = "";
-    gamezone.innerHTML = ""
-    document.getElementById("strike1").style.visibility = "hidden"
-document.getElementById("strike2").style.visibility = "hidden"
-document.getElementById("strike3").style.visibility = "hidden"
-
-
-    // return score, bank, strikes;
+    gamezone.innerHTML = "";
+    document.getElementById("strike1").style.visibility = "hidden";
+    document.getElementById("strike2").style.visibility = "hidden";
+    document.getElementById("strike3").style.visibility = "hidden";
 });
 
 function scoreUpdate() {
@@ -54,42 +51,43 @@ function makeLoot() {
     boxCount++;
     text.innerText = "How far can you push your luck?";
     // bankButton.innerText = `Bank: ${bank}`;
-    const makeLootBox = document.createElement("lootBox");
-    makeLootBox.innerText = "Loot Box";
-    gamezone.appendChild(makeLootBox);
+    const makeGo = document.createElement("go");
+    makeGo.innerText = "GO";
+    gamezone.appendChild(makeGo);
+    const makeStop = document.createElement("stop");
+    makeStop.innerText = "STOP";
+    gamezone.appendChild(makeStop);
 
     goLoot();
     scoreUpdate();
 }
 
-// function onclick of loot box, the score will change by a random amount
-
 function goLoot() {
-    const lootBox = document.querySelector("lootbox");
+    const goBox = document.querySelector("go");
 
     // colors change on mouse hover
     const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
     let colorInterval;
-    lootBox.addEventListener("mouseover", mouseOver);
+    goBox.addEventListener("mouseover", mouseOver);
     function mouseOver() {
         colorInterval = setInterval(() => {
-            lootBox.style.background =
+            goBox.style.background =
                 colors[Math.floor(Math.random() * colors.length)];
         }, 50);
     }
 
     // stop colorchange if not clicked
-    lootBox.addEventListener("mouseout", mouseOut);
+    goBox.addEventListener("mouseout", mouseOut);
     function mouseOut() {
         clearInterval(colorInterval);
-        lootBox.style.background = "yellow";
+        goBox.style.background = "green";
     }
-
-    lootBox.addEventListener("click", () => {
+    // function onclick of loot box, the score will change by a random amount
+    goBox.addEventListener("click", () => {
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
         scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> ScorePoints: ${score}, Bank: ${bank}`;
-        const clickedbox = document.querySelector("lootbox");
+        const clickedbox = document.querySelector("go");
 
         // add strikes for red and orange
         if (clickedbox.style.background == "red") {
@@ -119,7 +117,7 @@ function goLoot() {
 
         // clear box
         clearInterval(colorInterval);
-        lootBox.addEventListener("mouseout", mouseOut);
+        goBox.addEventListener("mouseout", mouseOut);
         function mouseOut() {
             // lootBox.remove(clickedbox);
             text.innerHTML = "";

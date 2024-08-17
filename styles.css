@@ -49,19 +49,26 @@ body {
 #gamezone {
     background-color: steelblue;
     min-height: 200px;
-
+display: flex;
+justify-content: space-evenly;
 }
 #strikezone {
     background-color: steelblue;
     min-height: 200px;
 
 }
-lootbox {
+go, stop {
     border: solid 2px black;
     padding: 10px;
-    background-color: yellow;
+    
     border-radius: 10px;
     transition: background-color 0.3s ease;
+}
+go {
+background-color: green;
+}
+stop{ 
+    background-color: red
 }
 
 .pic {
