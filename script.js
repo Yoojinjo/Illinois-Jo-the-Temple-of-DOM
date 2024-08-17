@@ -31,23 +31,28 @@ resetButton.addEventListener("click", () => {
      score = 0;
      bank = 0;
      strikes = 0;
+     extraInfoSpace.innerHTML = ""
+     scoreInfoSpace.innerHTML = ""
+
 return (score, bank, strikes)
 })
 
 
 function scoreUpdate() {
-    text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
+    // text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
     // startButton.innerText = `RollingScore: ${score}`;
     bankButton.innerText = `Add ${score} ScorePoints to Bank: ${bank}`;
 }
 
 function makeLoot() {
     boxCount++;
-    // startButton.innerText = "Another Box! (Minus -1 point to bank)";
+   text.innerText = "How far can you push your luck?";
     // bankButton.innerText = `Bank: ${bank}`;
     const makeLootBox = document.createElement("lootBox");
     makeLootBox.innerText = "Loot Box";
     gamezone.appendChild(makeLootBox);
+
+
     goLoot();
     scoreUpdate();
 }
@@ -76,7 +81,7 @@ function goLoot() {
     }
 
     lootBox.addEventListener("click", () => {
-        lootResult = Math.floor((Math.random() - 0.3) * 10);
+        lootResult = Math.floor((Math.random()) * 10);
         score += lootResult;
         scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> ScorePoints: ${score}, Bank: ${bank}`;
         const clickedbox = document.querySelector("lootbox");
@@ -89,19 +94,20 @@ function goLoot() {
             strikes++
         } else if (clickedbox.style.background == "orange") {
             console.log("1 strikes");
-            extraInfoSpace.innerHTML = `Sorry, You got a strike, be more careful!`
+            extraInfoSpace.innerHTML = `You got a strike, be more careful!`
             strikes++
         } 
         if (strikes >= 3) {
             console.log("Game over");
-            scoreInfoSpace.innerHTML = `You struck out!! <br> Your game ends here`
+            scoreInfoSpace.innerHTML = `You struck out!! <br> Your game ends here!!`
         }
 
         // clear box
         clearInterval(colorInterval);
         lootBox.addEventListener("mouseout", mouseOut);
         function mouseOut() {
-            lootBox.remove(clickedbox);
+            // lootBox.remove(clickedbox);
+            text.innerHTML = ""
         }
         scoreUpdate();
         // goLoot();
