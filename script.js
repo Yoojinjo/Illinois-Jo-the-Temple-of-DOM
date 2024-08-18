@@ -87,10 +87,13 @@ function goLoot() {
         clearInterval(colorInterval);
         goBox.style.background = "green";
     }
-    // SCORING onclick of loot box, the score will change by a random amount
+    //          SCORING 
+    // onclick of loot box, the score will change by a random amount
     goBox.addEventListener("click", () => {
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
+
+        scoreUpdate() 
         // scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> Temporary Score: ${score}, Bank: ${bank}`;
 
         const clickedbox = document.querySelector("go");
@@ -132,22 +135,19 @@ function goLoot() {
         document.getElementById("strike1").style.visibility = "hidden";
         document.getElementById("strike2").style.visibility = "hidden";
         document.getElementById("strike3").style.visibility = "hidden";
-
+        enableStart()
     });
 
-    function scoreUpdate() {
-        // text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
-        // startButton.innerText = `RollingScore: ${score}`;
-        // bankButton.innerText = `Add ${score} ScorePoints to Bank: ${bank}`;
-    }
+    
 
     // BANKING POINTS
     const stopBox = document.querySelector("stop");
     stopBox.addEventListener("click", () => {
         bank += score;
         score = 0;
-        scoreInfoSpace.innerHTML = `You banked your winnings. Current score: ${score}, Bank: ${bank}`;
-        enableStart()
+        trips--
+        extraInfoSpace.innerHTML = `You banked your winnings. <br> You have ${trips} expeditions left`;
+        scoreUpdate() 
     });
 }
 
@@ -155,6 +155,17 @@ function enableStart() {
     resetButton.addEventListener("click", () => {
         startButton.disabled = false;
     });
+}
+
+function scoreUpdate() {
+    const tripsRemain = document.querySelector("tripsRemain");
+    tripsRemain.innerHTML = `Trips remaining: ${trips}`;
+    
+    const currentGold = document.querySelector("currentGold");
+    currentGold.innerHTML = `Current Gold: ${score}`;
+
+    const bankGold = document.querySelector("bankGold");
+    bankGold.innerHTML = `Banked Gold: ${bank}`;
 }
 
 
