@@ -295,7 +295,7 @@ function checkGameOver() {
         gamezoneCenter.style.padding = "5%";
         gamezoneCenter.innerHTML = `<b style="font-weight: 900" style="font-size:xx-large"  <b>GAME OVER.</b>`;
         gamezoneCenter.innerHTML += `<br> <br> Your score is ${bank}. <br> Reset the game to try again`;
-
+        checkHighScore ()
         gamezoneLeft.innerHTML = "";
 
         gamezoneRight.innerHTML = "";
@@ -303,21 +303,32 @@ function checkGameOver() {
 }
 
 // use local storage to store high score info
-
-localStorage.setItem("highscore", "")
+function checkHighScore () {
+// localStorage.setItem("highscore", "")
 const highscore = localStorage.getItem("highscore")
 if (bank > highscore) {
-    // Enter name
+
+    // Make an Enter name form
+    let submitForm = document.createElement("form")
+    gamezone.appendChild(submitForm)
+
     let playerName = document.createElement("input");
     playerName.setAttribute("type", "text");
     playerName.setAttribute("placeholder", "Your name");
-    playerName.setAttribute("required");
-    gamezoneCenter.appendChild(playerName)
+    submitForm.appendChild(playerName)
 
 let submitButton = document.createElement("submit")
 submitButton.setAttribute("type", "submit")
 submitButton.innerText = "Submit"
+submitButton.style.background = "white"
+submitForm.appendChild(submitButton)
 
+submitForm.addEventListener("submit", () => {
+    if (playerName.length == 0) {
+        preventDefault()
+    }
+})
+}
 
 
 }
