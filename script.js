@@ -44,6 +44,7 @@ function globalReset() {
         gamezone.innerHTML = "";
         text.innerText = "Welcome to the game";
         resetCreatures();
+gamezone.style.backgroundColor = ""
 
         startButton.disabled = false;
         // enableStart();
@@ -235,7 +236,9 @@ function checkGameOver() {
         gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
     }
     if (spider > 2) {
-        gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
+        gamezone.style.backgroundColor = "cornsilk"
+        gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again </style>`;
+    
     }
 }
 

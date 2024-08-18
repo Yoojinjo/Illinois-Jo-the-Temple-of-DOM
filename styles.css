@@ -1,101 +1,119 @@
 body {
     background-color: cornsilk;
-    
-    display: flex;
+
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
 }
 #main {
-    width: 80%;
+    background-image: url(./images/jungletemple.gif);
+    background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: fit-content;
 }
 
-#panels{
-    min-height: 200px;
-    display: flex;
-    align-items: flex-end;
-}
-
-#menu {
-    height: auto;
-    
+#menu,
+#title,
+#text-area,
+#panels,
+#score,
+#extra-info,
+#strikezone {
+    /* height: auto; */
     display: flex;
     justify-content: space-around;
     align-items: center;
     text-align: center;
     min-height: 50px;
-    background-color: steelblue;
-}
-
-#title,
-#text-area, #gamezone, #score, #extra-info, #strikezone{
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    /* background-color: steelblue; */
 }
 
 #title {
     background-color: aquamarine;
 }
-
+h1 {
+    font-size: xx-large;
+}
 #text-area {
     background-color: violet;
+    font-size: x-large;
 }
-#score { 
-    background-color: steelblue;
+#score {
+    /* background-color: steelblue; */
     min-height: 50px;
     justify-content: space-evenly;
 }
 
 #extra-info {
-    background-color: steelblue;
-    min-height: 50px;
+    /* background-color: steelblue; */
+    min-height: 100px;
+    background-color: antiquewhite;
+    padding: 5px;
 }
 
 #gamezone {
-    background-color: steelblue;
+    /* background-color: steelblue; */
+    /* min-height: 200px; */
+    min-width: 50%;
     min-height: 200px;
-    min-width: 70%;
-display: flexbox;
-justify-content: space-evenly;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-#panel-left, #panel-right {
-min-width: 25%;
+#panel-left,
+#panel-right {
+    min-width: 25%;
 }
 
 #strikezone {
-    background-color: steelblue;
+    /* background-color: steelblue; */
     min-height: 200px;
-
 }
-go, stop, tripsRemain, currentGold, bankGold {
+go,
+stop,
+tripsRemain,
+currentGold,
+bankGold {
     border: solid 2px black;
     padding: 10px;
-    
     border-radius: 10px;
     transition: background-color 0.3s ease;
 }
+
+go,
+stop {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    align-content: center;
+}
+
 go {
-background-color: green;
-}
-stop{ 
-    background-color: red
+    background-color: green;
 }
 
-tripsRemain, currentGold, bankGold {
-background-color: yellow;
+stop {
+    background-color: red;
 }
 
+tripsRemain,
+currentGold,
+bankGold {
+    background-color: yellow;
+}
 
 .pic {
-    width: 100px;
+    width: 10%;
     visibility: hidden;
+    background-color: antiquewhite;
+    border-radius: 20px;
+    max-width: 100px;
 }
 
 .treasure {
-    width: 100px
+    width: 100px;
 }
 
 #indy {
@@ -106,4 +124,9 @@ background-color: yellow;
     display: flex;
     width: auto;
     justify-content: center;
+}
+
+button {
+    border: 3px solid;
+    font-size: x-large;
 }
