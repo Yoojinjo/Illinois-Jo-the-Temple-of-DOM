@@ -97,6 +97,8 @@ function goLoot() {
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
         extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`;
+        const lootFlavorText = ["Better luck next time",  "Pathetic", "Sad", "That's it?", "It's ok","You can do better",  "Better", "Please and Thank You!", "Awesome Sauce!", "BOOYAH!!", "Now THAT'S what I'm talking about!!!"]
+        text.innerHTML = `${lootFlavorText[lootResult]}`
 
         scoreUpdate();
 
