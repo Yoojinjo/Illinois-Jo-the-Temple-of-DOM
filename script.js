@@ -19,40 +19,27 @@ let score = 0;
 let bank = 0;
 let strikes = 0;
 
+//      disable start button after the game is started
+function disableStart() {
+    startButton.addEventListener("click", () => {
+        startButton.disabled = true;
+    });
+}
+
+disableStart();
+
+//          Game rules and directions
 directionButton.addEventListener("click", () => {
     extraInfoSpace.innerText =
         "Each box you open adds a random number of points. If you get 3 strikes, you lose all your points. Decide when to stop and bank your points!";
 });
 
+//          Creating the game environment
 startButton.addEventListener("click", () => {
     makeGoStop();
 });
 
-resetButton.addEventListener("click", () => {
-    score = 0;
-    bank = 0;
-    strikes = 0;
-    extraInfoSpace.innerHTML = "";
-    scoreInfoSpace.innerHTML = "";
-    gamezone.innerHTML = "";
-    document.getElementById("strike1").style.visibility = "hidden";
-    document.getElementById("strike2").style.visibility = "hidden";
-    document.getElementById("strike3").style.visibility = "hidden";
-});
-
-function scoreUpdate() {
-    // text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
-    // startButton.innerText = `RollingScore: ${score}`;
-    // bankButton.innerText = `Add ${score} ScorePoints to Bank: ${bank}`;
-}
-
-function disableStart () {
-    startButton.addEventListener("click", () => {
-        startButton.disabled = true;
-})}
-disableStart ()
 function makeGoStop() {
-    
     text.innerText = "How far can you push your luck?";
     // bankButton.innerText = `Bank: ${bank}`;
     const makeGo = document.createElement("go");
@@ -61,12 +48,11 @@ function makeGoStop() {
     const makeStop = document.createElement("stop");
     makeStop.innerText = "STOP";
     gamezone.appendChild(makeStop);
-    
+
     goLoot();
-    scoreUpdate();
+    // scoreUpdate()
 }
-
-
+//          Main game loop Search/Score/Penalties
 function goLoot() {
     const goBox = document.querySelector("go");
 
@@ -81,7 +67,7 @@ function goLoot() {
         }, 50);
     }
 
-    // stop colorchange if not clicked
+    // stop colorchange if Go not clicked
     goBox.addEventListener("mouseout", mouseOut);
     function mouseOut() {
         clearInterval(colorInterval);
@@ -89,7 +75,6 @@ function goLoot() {
     }
     // SCORING onclick of loot box, the score will change by a random amount
     goBox.addEventListener("click", () => {
-        
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
         scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> Temporary Score: ${score}, Bank: ${bank}`;
@@ -122,15 +107,43 @@ function goLoot() {
         }
     });
 
-// BANKING POINTS
-    const stopBox = document.querySelector("stop")
+//          Reset button
+    resetButton.addEventListener("click", () => {
+        score = 0;
+        bank = 0;
+        strikes = 0;
+        extraInfoSpace.innerHTML = "";
+        scoreInfoSpace.innerHTML = "";
+        gamezone.innerHTML = "";
+        document.getElementById("strike1").style.visibility = "hidden";
+        document.getElementById("strike2").style.visibility = "hidden";
+        document.getElementById("strike3").style.visibility = "hidden";
+
+    });
+
+    function scoreUpdate() {
+        // text.innerText = `You got ${lootResult} points. ScorePoints: ${score}, Bank: ${bank}`;
+        // startButton.innerText = `RollingScore: ${score}`;
+        // bankButton.innerText = `Add ${score} ScorePoints to Bank: ${bank}`;
+    }
+
+    // BANKING POINTS
+    const stopBox = document.querySelector("stop");
     stopBox.addEventListener("click", () => {
         bank += score;
         score = 0;
         scoreInfoSpace.innerHTML = `You banked your winnings. Current score: ${score}, Bank: ${bank}`;
-        
+        enableStart()
     });
 }
+
+function enableStart() {
+    resetButton.addEventListener("click", () => {
+        startButton.disabled = false;
+    });
+}
+
+
 /*              things to debug
 1. XXXX disable start button, if game has started
 2. if player strikes out, then disable start button or convert start button to reset button. disable is probably better, since I already want to do that?
