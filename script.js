@@ -39,7 +39,7 @@ directionButton.addEventListener("click", () => {
 startButton.addEventListener("click", () => {
     makeGoStop();
     const tripsRemain = document.createElement("tripsRemain");
-    tripsRemain.innerHTML = `Trips remaining: ${trips}`;
+    tripsRemain.innerHTML = `Expeditions remaining: ${trips}`;
     scoreInfoSpace.appendChild(tripsRemain)
 
     const currentGold = document.createElement("currentGold");
@@ -159,7 +159,7 @@ function enableStart() {
 
 function scoreUpdate() {
     const tripsRemain = document.querySelector("tripsRemain");
-    tripsRemain.innerHTML = `Trips remaining: ${trips}`;
+    tripsRemain.innerHTML = `Expeditions remaining: ${trips}`;
     
     const currentGold = document.querySelector("currentGold");
     currentGold.innerHTML = `Current Gold: ${score}`;
