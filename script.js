@@ -104,11 +104,13 @@ function goLoot() {
         const clickedbox = document.querySelector("go");
 
         if (clickedbox.style.background == "red") {
+            text.innerText = "You got injured twice!!!"
             console.log("2 strikes");
             monster();
             monster();
         }
         if (clickedbox.style.background == "orange") {
+            text.innerText ="You got hurt!!"
             console.log("1 strikes");
             monster();
         }
@@ -170,13 +172,13 @@ function monster() {
     let monsterRoll = Math.floor(Math.random() * 3);
     if (monsterRoll == 0) {
         scorpion++;
-        extraInfoSpace.innerHTML += `<br> You got stung by a scorpion!`;
+        extraInfoSpace.innerHTML += `<br> <br>You got stung by a scorpion!`;
     } else if (monsterRoll == 1) {
         snake++;
-        extraInfoSpace.innerHTML += `<br> Snakes! Why does it have to be snakes!!!`;
+        extraInfoSpace.innerHTML += `<br> <br>Snakes! Why does it have to be snakes!!!`;
     } else {
         spider++;
-        extraInfoSpace.innerHTML += `<br> You got bit by a spider!`;
+        extraInfoSpace.innerHTML += `<br> <br>You got bit by a spider!`;
     }
 }
 
