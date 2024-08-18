@@ -91,7 +91,6 @@ function goLoot() {
         goBox.style.background = "green";
     }
 
-
     //          SCORING
     // onclick of loot box, the score will change by a random amount
     goBox.addEventListener("click", () => {
@@ -101,10 +100,9 @@ function goLoot() {
 
         scoreUpdate();
 
-
-//              Strikes for red and orange
+        //              Strikes for red and orange
         const clickedbox = document.querySelector("go");
-        
+
         if (clickedbox.style.background == "red") {
             console.log("2 strikes");
             monster();
@@ -129,9 +127,9 @@ function goLoot() {
         gamezone.innerHTML = "";
 
         // make all creatures hidden on reset
-        let pictures = document.querySelectorAll(".pic")
-        pictures.forEach(element => {
-            element.style.visibility = "hidden";  
+        let pictures = document.querySelectorAll(".pic");
+        pictures.forEach((element) => {
+            element.style.visibility = "hidden";
         });
         startButton.disabled = false;
         // enableStart();
@@ -182,7 +180,7 @@ function monster() {
 function monsterAppears() {
     const jungleCreatures = [scorpion, snake, spider];
     const jungleCreaturesString = ["scorpion", "snake", "spider"];
-    let monsterId = ""
+    let monsterId = "";
     for (let i = 0; i < jungleCreatures.length; i++) {
         if (jungleCreatures[i] > 0) {
             monsterId = `${jungleCreaturesString[i]}1`;
@@ -190,21 +188,27 @@ function monsterAppears() {
         }
         if (jungleCreatures[i] > 1) {
             monsterId = `${jungleCreaturesString[i]}2`;
-            document.getElementById(monsterId).style.visibility =
-                "visible";
+            document.getElementById(monsterId).style.visibility = "visible";
         }
         if (jungleCreatures[i] > 2) {
             monsterId = `${jungleCreaturesString[i]}3`;
-            document.getElementById(monsterId).style.visibility =
-                "visible";
+            document.getElementById(monsterId).style.visibility = "visible";
+        } else {
+            checkGameOver();
         }
     }
 }
 
-function gameover () {
-    if (scorpion>2) {}
-    if (snake>2) {}
-    if (spider>2) {}
+function checkGameOver() {
+    if (scorpion > 2) {
+        gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
+    }
+    if (snake > 2) {
+        gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
+    }
+    if (spider > 2) {
+        gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
+    }
 }
 
 /*              things to debug
