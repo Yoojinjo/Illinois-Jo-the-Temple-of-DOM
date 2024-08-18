@@ -245,4 +245,5 @@ function checkGameOver() {
 3. XXXXX Maybe convert strikes to threats, and have multiple threat types spiders, snakes and scorpions? (then re-theme game as treasure hunter, point=> gold)
 4. make visible, temporary picture when player gains points (finds treasure) with point values on it
 5. treasure pic should slowly fade away
-6. add a midi soundtrack on game start (or webpage load) */
+6. add a midi soundtrack on game start (or webpage load) 
+7. attribute gold art to Vecteezy.com */
