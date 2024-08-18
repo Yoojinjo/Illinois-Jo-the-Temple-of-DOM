@@ -41,7 +41,7 @@ function globalReset() {
     resetButton.addEventListener("click", () => {
         score = 0;
         bank = 0;
-        trips = 0;
+        trips = 3;
 
         extraInfoSpace.innerHTML = "";
         scoreInfoSpace.innerHTML = "";
@@ -66,7 +66,7 @@ function resetCreatures() {
     scorpion = 0;
     snake = 0;
     spider = 0;
-    trips = 3;
+    
     // let pictures = document.querySelectorAll(".pic");
     // pictures.forEach((element) => {
     //     element.style.visibility = "hidden";
@@ -180,7 +180,7 @@ function goLoot() {
             console.log("1 strikes");
             monster();
         }
-checkGameOver()
+        checkGameOver();
         //          Strike counters
         // monsterAppears();
     });
@@ -188,12 +188,16 @@ checkGameOver()
     // BANKING POINTS
     const stopBox = document.querySelector("stop");
     stopBox.addEventListener("click", () => {
+        trips --;
         bank += score;
         score = 0;
-        trips--;
+        
         extraInfoSpace.innerHTML = `You banked your winnings. <br> You have ${trips} expeditions left`;
         resetCreatures();
         scoreUpdate();
+        if (trips == 0) {
+            checkGameOver()
+        }
     });
 }
 
@@ -220,16 +224,18 @@ function monster() {
         scorpion++;
         extraInfoSpace.innerHTML += `<br> <br>You got stung by a scorpion!`;
         addScorpion();
-    }  if (monsterRoll == 1) {
+    }
+    if (monsterRoll == 1) {
         snake++;
         extraInfoSpace.innerHTML += `<br> <br>Snakes! Why does it have to be snakes!!!`;
         addSnake();
-    } if (monsterRoll == 2) {
+    }
+    if (monsterRoll == 2) {
         spider++;
         extraInfoSpace.innerHTML += `<br> <br>You got bit by a spider!`;
         addSpider();
     }
-    checkGameOver()
+    checkGameOver();
 }
 
 function addScorpion() {
@@ -283,7 +289,7 @@ function addSpider() {
 // }
 
 function checkGameOver() {
-    if (scorpion > 2 || snake > 2 || spider > 2) {
+    if (scorpion > 2 || snake > 2 || spider > 2 || trips == 0) {
         gamezoneCenter.style.color = "white";
         gamezoneCenter.style.backgroundColor = "black";
         gamezoneCenter.style.padding = "5%";
@@ -296,14 +302,35 @@ function checkGameOver() {
     }
 }
 
-function reportCard() {
-    let reportCard = {
-        Name: "",
-        Bank: "",
-        Date: new Date(),
-        KilledBy: "",
-    };
+// use local storage to store high score info
+
+localStorage.setItem("highscore", "")
+const highscore = localStorage.getItem("highscore")
+if (bank > highscore) {
+    // Enter name
+    let playerName = document.createElement("input");
+    playerName.setAttribute("type", "text");
+    playerName.setAttribute("placeholder", "Your name");
+    playerName.setAttribute("required");
+    gamezoneCenter.appendChild(playerName)
+
+let submitButton = document.createElement("submit")
+submitButton.setAttribute("type", "submit")
+submitButton.innerText = "Submit"
+
+
+
 }
+
+
+
+
+let reportCard = {
+    Name: "Eugene Jo",
+    Bank: bank,
+    Date: new Date(),
+    KilledBy: `${scorpion} Scorpions, ${snake} Snakes & ${spider} Spiders`,
+};
 
 /*              things to debug
 1. XXXX disable start button, if game has started
