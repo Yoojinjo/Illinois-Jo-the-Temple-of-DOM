@@ -107,7 +107,7 @@ extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`
         }
         if (clickedbox.style.background == "orange") {
             console.log("1 strikes");
-            extraInfoSpace.innerHTML += `<br> You got a strike, be more careful!`;
+            extraInfoSpace.innerHTML += `<br> You got a strike. Be more careful!`;
             strikes++;
         }
 
@@ -121,7 +121,7 @@ extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`
         if (strikes >= 3) {
             document.getElementById("strike3").style.visibility = "visible";
             console.log("Game over");
-            extraInfoSpace.innerHTML += `<br> You struck out!!`;
+            
             gamezone.innerHTML = `Your game ends here!! Your banked gold is ${bank} points. <br> Reset and try again!`;
         }
     });
