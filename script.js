@@ -33,31 +33,35 @@ function disableStart() {
 disableStart();
 
 //          Reset button
-function globalReset () {
-resetButton.addEventListener("click", () => {
-    score = 0;
-    bank = 0;
-    // strikes = 0;
+function globalReset() {
+    resetButton.addEventListener("click", () => {
+        score = 0;
+        bank = 0;
+        // strikes = 0;
+
+        extraInfoSpace.innerHTML = "";
+        scoreInfoSpace.innerHTML = "";
+        gamezone.innerHTML = "";
+        text.innerText = "Welcome to the game";
+        resetCreatures();
+
+        startButton.disabled = false;
+        // enableStart();
+    });
+}
+
+globalReset();
+
+// make all creatures hidden on reset
+function resetCreatures() {
     scorpion = 0;
     snake = 0;
     spider = 0;
-    extraInfoSpace.innerHTML = "";
-    scoreInfoSpace.innerHTML = "";
-    gamezone.innerHTML = "";
-    text.innerText ="Welcome to the game"
-
-    // make all creatures hidden on reset
     let pictures = document.querySelectorAll(".pic");
     pictures.forEach((element) => {
         element.style.visibility = "hidden";
     });
-    startButton.disabled = false;
-    // enableStart();
-});
 }
-
-globalReset ()
-
 //          Game rules and directions
 directionButton.addEventListener("click", () => {
     extraInfoSpace.innerText =
@@ -165,6 +169,7 @@ function goLoot() {
         score = 0;
         trips--;
         extraInfoSpace.innerHTML = `You banked your winnings. <br> You have ${trips} expeditions left`;
+        resetCreatures();
         scoreUpdate();
     });
 }
