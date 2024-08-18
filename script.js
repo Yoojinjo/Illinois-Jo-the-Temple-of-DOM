@@ -37,12 +37,13 @@ function globalReset() {
     resetButton.addEventListener("click", () => {
         score = 0;
         bank = 0;
-        // strikes = 0;
+        trips = 0;
 
         extraInfoSpace.innerHTML = "";
         scoreInfoSpace.innerHTML = "";
         gamezone.innerHTML = "";
         text.innerText = "Welcome to the game";
+        
         resetCreatures();
 gamezone.style.backgroundColor = ""
 
