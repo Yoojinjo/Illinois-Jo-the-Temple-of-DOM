@@ -232,18 +232,11 @@ function monsterAppears() {
 }
 
 function checkGameOver() {
-    if (scorpion > 2) {
+    if (scorpion > 2 || snake > 2 || spider > 2) {
         gamezone.style.backgroundColor = "cornsilk";
-        gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
+        gamezone.innerHTML = `<b style="font-weight: 800" style="font-size:xx-large"  ">GAME OVER.</b> <br> <br> Your score is ${bank}. <br> Reset the game to try again`;
     }
-    if (snake > 2) {
-        gamezone.style.backgroundColor = "cornsilk";
-        gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
-    }
-    if (spider > 2) {
-        gamezone.style.backgroundColor = "cornsilk";
-        gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again </style>`;
-    }
+    
 }
 
 /*              things to debug
