@@ -74,7 +74,11 @@ function resetCreatures() {
 //          Game rules and directions
 directionButton.addEventListener("click", () => {
     extraInfoSpace.innerText =
-        "Each box you open adds a random number of points. If you get 3 strikes, you lose all your points. Decide when to stop and bank your points!";
+        "You have 3 expeditions to collect as much gold as possible.";
+        extraInfoSpace.addEventListener("click", () => {
+        extraInfoSpace.innerText = "If you get 3 of any threat... GAME OVER."})
+        extraInfoSpace.addEventListener("click", () => {extraInfoSpace.innerText = "You can reset all the threats by ending your current expedition and clicking BANK."})
+            extraInfoSpace.addEventListener("click", () => {extraInfoSpace.innerText = "Your BANK is your final score."})
 });
 
 //          Creating the game environment
@@ -249,6 +253,16 @@ function checkGameOver() {
         gamezoneRight.innerHTML = "";
     }
 }
+
+function reportCard () {
+    let reportCard = {
+Name: "",
+Bank: "",
+Date: new Date(),
+KilledBy: ""
+    }
+}
+
 
 /*              things to debug
 1. XXXX disable start button, if game has started
