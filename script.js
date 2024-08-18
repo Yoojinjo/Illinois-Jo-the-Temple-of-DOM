@@ -18,7 +18,11 @@ const threeStrikes = document.getElementsByClassName("pic");
 let score = 0;
 let bank = 0;
 let strikes = 0;
-let trips = 3
+let trips = 3;
+
+let scorpion = 0;
+let snake = 0;
+let spider = 0;
 
 //      disable start button after the game is started
 function disableStart() {
@@ -40,16 +44,15 @@ startButton.addEventListener("click", () => {
     makeGoStop();
     const tripsRemain = document.createElement("tripsRemain");
     tripsRemain.innerHTML = `Expeditions remaining: ${trips}`;
-    scoreInfoSpace.appendChild(tripsRemain)
+    scoreInfoSpace.appendChild(tripsRemain);
 
     const currentGold = document.createElement("currentGold");
     currentGold.innerHTML = `Current Gold: ${score}`;
-    scoreInfoSpace.appendChild(currentGold)
+    scoreInfoSpace.appendChild(currentGold);
 
     const bankGold = document.createElement("bankGold");
     bankGold.innerHTML = `Banked Gold: ${bank}`;
-    scoreInfoSpace.appendChild(bankGold)
-
+    scoreInfoSpace.appendChild(bankGold);
 });
 
 function makeGoStop() {
@@ -73,7 +76,7 @@ function goLoot() {
     const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
     let colorInterval;
     goBox.addEventListener("mouseover", mouseOver);
-    
+
     function mouseOver() {
         colorInterval = setInterval(() => {
             goBox.style.background =
@@ -87,46 +90,33 @@ function goLoot() {
         clearInterval(colorInterval);
         goBox.style.background = "green";
     }
-    //          SCORING 
+    //          SCORING
     // onclick of loot box, the score will change by a random amount
     goBox.addEventListener("click", () => {
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
-extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`
+        extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`;
 
-        scoreUpdate() 
+        scoreUpdate();
         // scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> Temporary Score: ${score}, Bank: ${bank}`;
 
         const clickedbox = document.querySelector("go");
         // add strikes for red and orange
         if (clickedbox.style.background == "red") {
             console.log("2 strikes");
-            extraInfoSpace.innerHTML += `<br> Very unlucky. You got 2 strikes!`;
-            strikes++;
-            strikes++;
+            monster();
+            monster();
         }
         if (clickedbox.style.background == "orange") {
             console.log("1 strikes");
-            extraInfoSpace.innerHTML += `<br> You got a strike. Be more careful!`;
-            strikes++;
+            monster();
         }
 
         // strike counter
-        if (strikes >= 1) {
-            document.getElementById("strike1").style.visibility = "visible";
-        }
-        if (strikes >= 2) {
-            document.getElementById("strike2").style.visibility = "visible";
-        }
-        if (strikes >= 3) {
-            document.getElementById("strike3").style.visibility = "visible";
-            console.log("Game over");
-            
-            gamezone.innerHTML = `Your game ends here!! Your banked gold is ${bank} points. <br> Reset and try again!`;
-        }
+        monsterAppears();
     });
 
-//          Reset button
+    //          Reset button
     resetButton.addEventListener("click", () => {
         score = 0;
         bank = 0;
@@ -137,19 +127,17 @@ extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`
         document.getElementById("strike1").style.visibility = "hidden";
         document.getElementById("strike2").style.visibility = "hidden";
         document.getElementById("strike3").style.visibility = "hidden";
-        enableStart()
+        enableStart();
     });
-
-    
 
     // BANKING POINTS
     const stopBox = document.querySelector("stop");
     stopBox.addEventListener("click", () => {
         bank += score;
         score = 0;
-        trips--
+        trips--;
         extraInfoSpace.innerHTML = `You banked your winnings. <br> You have ${trips} expeditions left`;
-        scoreUpdate() 
+        scoreUpdate();
     });
 }
 
@@ -162,7 +150,7 @@ function enableStart() {
 function scoreUpdate() {
     const tripsRemain = document.querySelector("tripsRemain");
     tripsRemain.innerHTML = `Expeditions remaining: ${trips}`;
-    
+
     const currentGold = document.querySelector("currentGold");
     currentGold.innerHTML = `Current Gold: ${score}`;
 
@@ -170,7 +158,41 @@ function scoreUpdate() {
     bankGold.innerHTML = `Banked Gold: ${bank}`;
 }
 
+function monster() {
+    let monsterRoll = Math.floor(Math.random() * 3);
+    if (monsterRoll == 0) {
+        scorpion++;
+        extraInfoSpace.innerHTML += `<br> You got stung by a scorpion!`;
+    } else if (monsterRoll == 1) {
+        snake++;
+        extraInfoSpace.innerHTML += `<br> Snakes! Why does it have to be snakes!!!`;
+    } else {
+        spider++;
+        extraInfoSpace.innerHTML += `<br> You got bit by a spider!`;
+    }
+}
 
+function monsterAppears() {
+    const jungleCreatures = [scorpion, snake, spider];
+    const jungleCreaturesString = ["scorpion", "snake", "spider"];
+    let monsterId = ""
+    for (let i = 0; i < jungleCreatures.length; i++) {
+        if (jungleCreatures[i] > 0) {
+            monsterId = `${jungleCreaturesString[i]}1`;
+            document.getElementById(monsterId).style.visibility = "visible";
+        }
+        if (jungleCreatures[i] > 1) {
+            monsterId = `${jungleCreaturesString[i]}2`;
+            document.getElementById(monsterId).style.visibility =
+                "visible";
+        }
+        if (jungleCreatures[i] > 2) {
+            monsterId = `${jungleCreaturesString[i]}3`;
+            document.getElementById(monsterId).style.visibility =
+                "visible";
+        }
+    }
+}
 /*              things to debug
 1. XXXX disable start button, if game has started
 2. XXXX if player strikes out, then disable start button or convert start button to reset button. disable is probably better, since I already want to do that? - not needed anymore
@@ -179,8 +201,7 @@ function scoreUpdate() {
             Other game functions to add. 
 1. End the game after 3 banks (call it attempts?). create a space to show how many left?
 2. store high score as local data
-3. Maybe convert strikes to threats, and have multiple threat types
-spiders, snakes and scorpions? (then re-theme game as treasure hunter, point=> gold)
+3. XXXXX Maybe convert strikes to threats, and have multiple threat types spiders, snakes and scorpions? (then re-theme game as treasure hunter, point=> gold)
 4. make visible, temporary picture when player gains points (finds treasure) with point values on it
 5. treasure pic should slowly fade away
 6. add a midi soundtrack on game start (or webpage load) */
