@@ -30,8 +30,33 @@ function disableStart() {
         startButton.disabled = true;
     });
 }
-
 disableStart();
+
+//          Reset button
+function globalReset () {
+resetButton.addEventListener("click", () => {
+    score = 0;
+    bank = 0;
+    // strikes = 0;
+    scorpion = 0;
+    snake = 0;
+    spider = 0;
+    extraInfoSpace.innerHTML = "";
+    scoreInfoSpace.innerHTML = "";
+    gamezone.innerHTML = "";
+    text.innerText ="Welcome to the game"
+
+    // make all creatures hidden on reset
+    let pictures = document.querySelectorAll(".pic");
+    pictures.forEach((element) => {
+        element.style.visibility = "hidden";
+    });
+    startButton.disabled = false;
+    // enableStart();
+});
+}
+
+globalReset ()
 
 //          Game rules and directions
 directionButton.addEventListener("click", () => {
@@ -97,8 +122,20 @@ function goLoot() {
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
         extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`;
-        const lootFlavorText = ["Better luck next time",  "Pathetic", "Sad", "That's it?", "It's ok","You can do better",  "Better", "Please and Thank You!", "Awesome Sauce!", "BOOYAH!!", "Now THAT'S what I'm talking about!!!"]
-        text.innerHTML = `${lootFlavorText[lootResult]}`
+        const lootFlavorText = [
+            "Better luck next time",
+            "Pathetic",
+            "Sad",
+            "That's it?",
+            "It's ok",
+            "You can do better",
+            "Better",
+            "Please and Thank You!",
+            "Awesome Sauce!",
+            "BOOYAH!!",
+            "Now THAT'S what I'm talking about!!!",
+        ];
+        text.innerHTML = `${lootFlavorText[lootResult]}`;
 
         scoreUpdate();
 
@@ -106,40 +143,19 @@ function goLoot() {
         const clickedbox = document.querySelector("go");
 
         if (clickedbox.style.background == "red") {
-            text.innerText = "You got injured twice!!!"
+            text.innerText = "You got injured twice!!!";
             console.log("2 strikes");
             monster();
             monster();
         }
         if (clickedbox.style.background == "orange") {
-            text.innerText ="You got hurt!!"
+            text.innerText = "You got hurt!!";
             console.log("1 strikes");
             monster();
         }
 
         //          Strike counters
         monsterAppears();
-    });
-
-    //          Reset button
-    resetButton.addEventListener("click", () => {
-        score = 0;
-        bank = 0;
-        // strikes = 0;
-        scorpion = 0;
-        snake = 0;
-        spider = 0;
-        extraInfoSpace.innerHTML = "";
-        scoreInfoSpace.innerHTML = "";
-        gamezone.innerHTML = "";
-
-        // make all creatures hidden on reset
-        let pictures = document.querySelectorAll(".pic");
-        pictures.forEach((element) => {
-            element.style.visibility = "hidden";
-        });
-        startButton.disabled = false;
-        // enableStart();
     });
 
     // BANKING POINTS
