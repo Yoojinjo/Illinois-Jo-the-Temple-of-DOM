@@ -71,9 +71,9 @@ function resetCreatures() {
     // pictures.forEach((element) => {
     //     element.style.visibility = "hidden";
     // });
-document.getElementById("scorpionZone").innerHTML = ""
-document.getElementById("snakeZone").innerHTML = ""
-document.getElementById("spiderZone").innerHTML = ""
+    document.getElementById("scorpionZone").innerHTML = "";
+    document.getElementById("snakeZone").innerHTML = "";
+    document.getElementById("spiderZone").innerHTML = "";
 }
 //          Game rules and directions
 directionButton.addEventListener("click", () => {
@@ -180,7 +180,7 @@ function goLoot() {
             console.log("1 strikes");
             monster();
         }
-
+checkGameOver()
         //          Strike counters
         // monsterAppears();
     });
@@ -220,15 +220,16 @@ function monster() {
         scorpion++;
         extraInfoSpace.innerHTML += `<br> <br>You got stung by a scorpion!`;
         addScorpion();
-    } else if (monsterRoll == 1) {
+    }  if (monsterRoll == 1) {
         snake++;
         extraInfoSpace.innerHTML += `<br> <br>Snakes! Why does it have to be snakes!!!`;
         addSnake();
-    } else {
+    } if (monsterRoll == 2) {
         spider++;
         extraInfoSpace.innerHTML += `<br> <br>You got bit by a spider!`;
-        addSnake();
-    } checkGameOver()
+        addSpider();
+    }
+    checkGameOver()
 }
 
 function addScorpion() {
