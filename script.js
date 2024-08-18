@@ -7,7 +7,9 @@ const directionButton = document.getElementById("directions");
 const startButton = document.getElementById("start");
 const textArea = document.getElementById("text-area");
 const text = document.getElementById("text");
-const gamezone = document.getElementById("gamezone");
+const gamezoneLeft = document.getElementById("gamezone-left");
+const gamezoneCenter = document.getElementById("gamezone-center");
+const gamezoneRight = document.getElementById("gamezone-right");
 const menu = document.getElementById("menu");
 const resetButton = document.getElementById("reset");
 let extraInfoSpace = document.getElementById("extra-info");
@@ -93,10 +95,10 @@ function makeGoStop() {
     // bankButton.innerText = `Bank: ${bank}`;
     const makeGo = document.createElement("go");
     makeGo.innerText = "GO";
-    gamezone.appendChild(makeGo);
+    gamezoneLeft.appendChild(makeGo);
     const makeStop = document.createElement("stop");
     makeStop.innerText = "STOP";
-    gamezone.appendChild(makeStop);
+    gamezoneRight.appendChild(makeStop);
 
     goLoot();
     // scoreUpdate()
@@ -233,10 +235,16 @@ function monsterAppears() {
 
 function checkGameOver() {
     if (scorpion > 2 || snake > 2 || spider > 2) {
-        gamezone.style.backgroundColor = "cornsilk";
-        gamezone.innerHTML = `<b style="font-weight: 800" style="font-size:xx-large"  ">GAME OVER.</b> <br> <br> Your score is ${bank}. <br> Reset the game to try again`;
+        gamezoneCenter.style.color = "white";
+        gamezoneCenter.style.backgroundColor = "black";
+        gamezoneCenter.style.padding = "5%";
+        gamezoneCenter.innerHTML = `<b style="font-weight: 900" style="font-size:xx-large"  <b>GAME OVER.</b>`;
+        gamezoneCenter.innerHTML += `<br> <br> Your score is ${bank}. <br> Reset the game to try again`;
+        
+        gamezoneLeft.innerHTML = "";
+        
+        gamezoneRight.innerHTML = "";
     }
-    
 }
 
 /*              things to debug
