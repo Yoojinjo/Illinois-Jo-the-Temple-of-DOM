@@ -39,6 +39,7 @@ body {
 #score { 
     background-color: steelblue;
     min-height: 50px;
+    justify-content: space-evenly;
 }
 
 #extra-info {
@@ -57,7 +58,7 @@ justify-content: space-evenly;
     min-height: 200px;
 
 }
-go, stop {
+go, stop, tripsRemain, currentGold, bankGold {
     border: solid 2px black;
     padding: 10px;
     
@@ -70,6 +71,11 @@ background-color: green;
 stop{ 
     background-color: red
 }
+
+tripsRemain, currentGold, bankGold {
+background-color: yellow;
+}
+
 
 .pic {
     width: 100px;
