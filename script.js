@@ -45,7 +45,10 @@ function globalReset() {
 
         extraInfoSpace.innerHTML = "";
         scoreInfoSpace.innerHTML = "";
-        gamezone.innerHTML = "";
+        gamezoneLeft.innerHTML = "";
+        gamezoneCenter.innerHTML = "";
+        gamezoneCenter.style.backgroundColor = "";
+        gamezoneRight.innerHTML = "";
         text.innerText = "Welcome to the game";
 
         resetCreatures();
@@ -240,9 +243,9 @@ function checkGameOver() {
         gamezoneCenter.style.padding = "5%";
         gamezoneCenter.innerHTML = `<b style="font-weight: 900" style="font-size:xx-large"  <b>GAME OVER.</b>`;
         gamezoneCenter.innerHTML += `<br> <br> Your score is ${bank}. <br> Reset the game to try again`;
-        
+
         gamezoneLeft.innerHTML = "";
-        
+
         gamezoneRight.innerHTML = "";
     }
 }
