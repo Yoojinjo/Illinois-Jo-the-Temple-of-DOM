@@ -66,19 +66,29 @@ function resetCreatures() {
     scorpion = 0;
     snake = 0;
     spider = 0;
-    let pictures = document.querySelectorAll(".pic");
+    trips = 3;
+    // let pictures = document.querySelectorAll(".pic");
     // pictures.forEach((element) => {
     //     element.style.visibility = "hidden";
     // });
+document.getElementById("scorpionZone").innerHTML = ""
+document.getElementById("snakeZone").innerHTML = ""
+document.getElementById("spiderZone").innerHTML = ""
 }
 //          Game rules and directions
 directionButton.addEventListener("click", () => {
     extraInfoSpace.innerText =
         "You have 3 expeditions to collect as much gold as possible.";
-        extraInfoSpace.addEventListener("click", () => {
-        extraInfoSpace.innerText = "If you get 3 of any threat... GAME OVER."})
-        extraInfoSpace.addEventListener("click", () => {extraInfoSpace.innerText = "You can reset all the threats by ending your current expedition and clicking BANK."})
-            extraInfoSpace.addEventListener("click", () => {extraInfoSpace.innerText = "Your BANK is your final score."})
+    extraInfoSpace.addEventListener("click", () => {
+        extraInfoSpace.innerText = "If you get 3 of any threat... GAME OVER.";
+    });
+    extraInfoSpace.addEventListener("click", () => {
+        extraInfoSpace.innerText =
+            "You can reset all the threats by ending your current expedition and clicking BANK.";
+    });
+    extraInfoSpace.addEventListener("click", () => {
+        extraInfoSpace.innerText = "Your BANK is your final score.";
+    });
 });
 
 //          Creating the game environment
@@ -209,17 +219,19 @@ function monster() {
     if (monsterRoll == 0) {
         scorpion++;
         extraInfoSpace.innerHTML += `<br> <br>You got stung by a scorpion!`;
-        addScorpion()
+        addScorpion();
     } else if (monsterRoll == 1) {
         snake++;
         extraInfoSpace.innerHTML += `<br> <br>Snakes! Why does it have to be snakes!!!`;
+        addSnake();
     } else {
         spider++;
         extraInfoSpace.innerHTML += `<br> <br>You got bit by a spider!`;
-    }
+        addSnake();
+    } checkGameOver()
 }
 
-function addScorpion () {
+function addScorpion() {
     // const makeScorpion = document.getElementById("scorpionZone");
     // const img = document.createElement("img")
     // img.src = "./images/scorpion-shape.png";
@@ -227,10 +239,24 @@ function addScorpion () {
     // img.alt = "scorpion icon";
     // makeScorpion.appendChild(img);
 
-const newImage = new Image(100,100)
-newImage.src = "./images/scorpion-shape.png"
-const makeScorpion = document.getElementById("scorpionZone");
-makeScorpion.appendChild(newImage);
+    const newImage = new Image(50, 50);
+    newImage.src = "./images/scorpion-shape.png";
+    const makeScorpion = document.getElementById("scorpionZone");
+    makeScorpion.appendChild(newImage);
+}
+
+function addSnake() {
+    const newImage = new Image(50, 50);
+    newImage.src = "./images/snake-icon.png";
+    const makeSnake = document.getElementById("snakeZone");
+    makeSnake.appendChild(newImage);
+}
+
+function addSpider() {
+    const newImage = new Image(50, 50);
+    newImage.src = "./images/spider-icon.png";
+    const makeSpider = document.getElementById("spiderZone");
+    makeSpider.appendChild(newImage);
 }
 
 // function monsterAppears() {
@@ -269,15 +295,14 @@ function checkGameOver() {
     }
 }
 
-function reportCard () {
+function reportCard() {
     let reportCard = {
-Name: "",
-Bank: "",
-Date: new Date(),
-KilledBy: ""
-    }
+        Name: "",
+        Bank: "",
+        Date: new Date(),
+        KilledBy: "",
+    };
 }
-
 
 /*              things to debug
 1. XXXX disable start button, if game has started
