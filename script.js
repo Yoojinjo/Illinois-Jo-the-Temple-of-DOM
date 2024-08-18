@@ -24,6 +24,8 @@ let scorpion = 0;
 let snake = 0;
 let spider = 0;
 
+document.getElementById("myAudio").volume = 0.04;
+
 //      disable start button after the game is started
 function disableStart() {
     startButton.addEventListener("click", () => {
@@ -43,9 +45,9 @@ function globalReset() {
         scoreInfoSpace.innerHTML = "";
         gamezone.innerHTML = "";
         text.innerText = "Welcome to the game";
-        
+
         resetCreatures();
-gamezone.style.backgroundColor = ""
+        gamezone.style.backgroundColor = "";
 
         startButton.disabled = false;
         // enableStart();
@@ -231,15 +233,16 @@ function monsterAppears() {
 
 function checkGameOver() {
     if (scorpion > 2) {
+        gamezone.style.backgroundColor = "cornsilk";
         gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
     }
     if (snake > 2) {
+        gamezone.style.backgroundColor = "cornsilk";
         gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again`;
     }
     if (spider > 2) {
-        gamezone.style.backgroundColor = "cornsilk"
+        gamezone.style.backgroundColor = "cornsilk";
         gamezone.innerHTML = `You are dead. <br> Your score is ${bank}. <br> Reset the game to try again </style>`;
-    
     }
 }
 
