@@ -70,7 +70,14 @@ h1 {
 #strikezone {
     /* background-color: steelblue; */
     min-height: 200px;
+    
 }
+
+#scorpionZone, #spiderZone, #snakeZone {
+    background-color: wheat;
+    width: 33%;
+}
+
 go,
 stop,
 tripsRemain,
@@ -104,13 +111,13 @@ bankGold {
     background-color: yellow;
 }
 
-.pic {
-    width: 10%;
+/* .pic {
+    width: 100px;
     visibility: hidden;
     background-color: antiquewhite;
     border-radius: 20px;
     max-width: 100px;
-}
+} */
 
 .treasure {
     width: 100px;

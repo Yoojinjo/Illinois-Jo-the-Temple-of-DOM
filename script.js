@@ -67,9 +67,9 @@ function resetCreatures() {
     snake = 0;
     spider = 0;
     let pictures = document.querySelectorAll(".pic");
-    pictures.forEach((element) => {
-        element.style.visibility = "hidden";
-    });
+    // pictures.forEach((element) => {
+    //     element.style.visibility = "hidden";
+    // });
 }
 //          Game rules and directions
 directionButton.addEventListener("click", () => {
@@ -172,7 +172,7 @@ function goLoot() {
         }
 
         //          Strike counters
-        monsterAppears();
+        // monsterAppears();
     });
 
     // BANKING POINTS
@@ -209,6 +209,7 @@ function monster() {
     if (monsterRoll == 0) {
         scorpion++;
         extraInfoSpace.innerHTML += `<br> <br>You got stung by a scorpion!`;
+        addScorpion()
     } else if (monsterRoll == 1) {
         snake++;
         extraInfoSpace.innerHTML += `<br> <br>Snakes! Why does it have to be snakes!!!`;
@@ -218,27 +219,41 @@ function monster() {
     }
 }
 
-function monsterAppears() {
-    const jungleCreatures = [scorpion, snake, spider];
-    const jungleCreaturesString = ["scorpion", "snake", "spider"];
-    let monsterId = "";
-    for (let i = 0; i < jungleCreatures.length; i++) {
-        if (jungleCreatures[i] > 0) {
-            monsterId = `${jungleCreaturesString[i]}1`;
-            document.getElementById(monsterId).style.visibility = "visible";
-        }
-        if (jungleCreatures[i] > 1) {
-            monsterId = `${jungleCreaturesString[i]}2`;
-            document.getElementById(monsterId).style.visibility = "visible";
-        }
-        if (jungleCreatures[i] > 2) {
-            monsterId = `${jungleCreaturesString[i]}3`;
-            document.getElementById(monsterId).style.visibility = "visible";
-        } else {
-            checkGameOver();
-        }
-    }
+function addScorpion () {
+    // const makeScorpion = document.getElementById("scorpionZone");
+    // const img = document.createElement("img")
+    // img.src = "./images/scorpion-shape.png";
+    // img.class = "pic";
+    // img.alt = "scorpion icon";
+    // makeScorpion.appendChild(img);
+
+const newImage = new Image(100,100)
+newImage.src = "./images/scorpion-shape.png"
+const makeScorpion = document.getElementById("scorpionZone");
+makeScorpion.appendChild(newImage);
 }
+
+// function monsterAppears() {
+//     const jungleCreatures = [scorpion, snake, spider];
+//     const jungleCreaturesString = ["scorpion", "snake", "spider"];
+//     let monsterId = "";
+//     for (let i = 0; i < jungleCreatures.length; i++) {
+//         if (jungleCreatures[i] > 0) {
+//             monsterId = `${jungleCreaturesString[i]}1`;
+//             document.getElementById(monsterId).style.visibility = "visible";
+//         }
+//         if (jungleCreatures[i] > 1) {
+//             monsterId = `${jungleCreaturesString[i]}2`;
+//             document.getElementById(monsterId).style.visibility = "visible";
+//         }
+//         if (jungleCreatures[i] > 2) {
+//             monsterId = `${jungleCreaturesString[i]}3`;
+//             document.getElementById(monsterId).style.visibility = "visible";
+//         } else {
+//             checkGameOver();
+//         }
+//     }
+// }
 
 function checkGameOver() {
     if (scorpion > 2 || snake > 2 || spider > 2) {
