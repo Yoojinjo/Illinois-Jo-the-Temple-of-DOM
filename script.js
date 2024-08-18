@@ -17,7 +17,7 @@ const threeStrikes = document.getElementsByClassName("pic");
 
 let score = 0;
 let bank = 0;
-let strikes = 0;
+// let strikes = 0;  // removed when creatures were added
 let trips = 3;
 
 let scorpion = 0;
@@ -100,7 +100,7 @@ function goLoot() {
 
         scoreUpdate();
 
-        //              Strikes for red and orange
+        //          Strikes for red and orange
         const clickedbox = document.querySelector("go");
 
         if (clickedbox.style.background == "red") {
@@ -121,7 +121,10 @@ function goLoot() {
     resetButton.addEventListener("click", () => {
         score = 0;
         bank = 0;
-        strikes = 0;
+        // strikes = 0;
+        scorpion = 0;
+        snake = 0;
+        spider = 0;
         extraInfoSpace.innerHTML = "";
         scoreInfoSpace.innerHTML = "";
         gamezone.innerHTML = "";
