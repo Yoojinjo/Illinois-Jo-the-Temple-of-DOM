@@ -14,3 +14,4 @@ iterate through array to check if game ends
 created multiple functions and sub-functions
 use JS to modify CSS
 
+currently stuck on data validation where form will not store to local storage if name field is empty. Also can't figure out why submit button is non functional

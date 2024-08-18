@@ -66,7 +66,7 @@ function resetCreatures() {
     scorpion = 0;
     snake = 0;
     spider = 0;
-    
+
     // let pictures = document.querySelectorAll(".pic");
     // pictures.forEach((element) => {
     //     element.style.visibility = "hidden";
@@ -188,15 +188,15 @@ function goLoot() {
     // BANKING POINTS
     const stopBox = document.querySelector("stop");
     stopBox.addEventListener("click", () => {
-        trips --;
+        trips--;
         bank += score;
         score = 0;
-        
+
         extraInfoSpace.innerHTML = `You banked your winnings. <br> You have ${trips} expeditions left`;
         resetCreatures();
         scoreUpdate();
         if (trips == 0) {
-            checkGameOver()
+            checkGameOver();
         }
     });
 }
@@ -235,7 +235,7 @@ function monster() {
         extraInfoSpace.innerHTML += `<br> <br>You got bit by a spider!`;
         addSpider();
     }
-    checkGameOver();
+    // checkGameOver();
 }
 
 function addScorpion() {
@@ -295,53 +295,46 @@ function checkGameOver() {
         gamezoneCenter.style.padding = "5%";
         gamezoneCenter.innerHTML = `<b style="font-weight: 900" style="font-size:xx-large"  <b>GAME OVER.</b>`;
         gamezoneCenter.innerHTML += `<br> <br> Your score is ${bank}. <br> Reset the game to try again`;
-        checkHighScore ()
+
         gamezoneLeft.innerHTML = "";
-
         gamezoneRight.innerHTML = "";
+
+        // use local storage to store high score info
+        sessionStorageStorage.setItem("highscore", "0");
+        if (bank > highscoreleader) {
+            // Make an Enter name form
+            let submitForm = document.createElement("form");
+            gamezone.appendChild(submitForm);
+
+            let playerName = document.createElement("input");
+            playerName.setAttribute("type", "text");
+            playerName.setAttribute("placeholder", "Your name");
+            submitForm.appendChild(playerName);
+
+            let submitButton = document.createElement("submit");
+            submitButton.setAttribute("type", "submit");
+            submitButton.innerText = "Submit";
+            submitButton.style.background = "white";
+            submitForm.appendChild(submitButton);
+
+            submitForm.addEventListener("submit", () => {
+                if (playerName.length == 0) {
+                    preventDefault();
+                } else {
+                    let reportCard = {
+                        Name: playerName,
+                        Bank: bank,
+                        Date: new Date(),
+                        // KilledBy: `${scorpion} Scorpions, ${snake} Snakes & ${spider} Spiders`,
+                    };
+                    return reportCard;
+                }
+                const myJSON = JSON.stringify(reportCard);
+                document.getElementById("panel-left").innerHTML = myJSON;
+            });
+        }
     }
 }
-
-// use local storage to store high score info
-function checkHighScore () {
-// localStorage.setItem("highscore", "")
-const highscore = localStorage.getItem("highscore")
-if (bank > highscore) {
-
-    // Make an Enter name form
-    let submitForm = document.createElement("form")
-    gamezone.appendChild(submitForm)
-
-    let playerName = document.createElement("input");
-    playerName.setAttribute("type", "text");
-    playerName.setAttribute("placeholder", "Your name");
-    submitForm.appendChild(playerName)
-
-let submitButton = document.createElement("submit")
-submitButton.setAttribute("type", "submit")
-submitButton.innerText = "Submit"
-submitButton.style.background = "white"
-submitForm.appendChild(submitButton)
-
-submitForm.addEventListener("submit", () => {
-    if (playerName.length == 0) {
-        preventDefault()
-    }
-})
-}
-
-
-}
-
-
-
-
-let reportCard = {
-    Name: "Eugene Jo",
-    Bank: bank,
-    Date: new Date(),
-    KilledBy: `${scorpion} Scorpions, ${snake} Snakes & ${spider} Spiders`,
-};
 
 /*              things to debug
 1. XXXX disable start button, if game has started
