@@ -125,3 +125,16 @@ function goLoot() {
         
     });
 }
+/*              things to debug
+1. disable start button, if game has started
+2. if player strikes out, then disable start button or convert start button to reset button. disable is probably better, since I already want to do that?
+3. 
+
+            Other game functions to add. 
+1. End the game after 3 banks (call it attempts?). create a space to show how many left?
+2. store high score as local data
+3. Maybe convert strikes to threats, and have multiple threat types
+spiders, snakes and scorpions? (then re-theme game as treasure hunter, point=> gold)
+4. make visible, temporary picture when player gains points (finds treasure) with point values on it
+5. treasure pic should slowly fade away
+6. add a midi soundtrack on game start (or webpage load) */
