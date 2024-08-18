@@ -92,6 +92,7 @@ function goLoot() {
     goBox.addEventListener("click", () => {
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
+extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`
 
         scoreUpdate() 
         // scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> Temporary Score: ${score}, Bank: ${bank}`;
@@ -100,13 +101,13 @@ function goLoot() {
         // add strikes for red and orange
         if (clickedbox.style.background == "red") {
             console.log("2 strikes");
-            extraInfoSpace.innerHTML = `Very unlucky. You got 2 strikes!`;
+            extraInfoSpace.innerHTML += `<br> Very unlucky. You got 2 strikes!`;
             strikes++;
             strikes++;
         }
         if (clickedbox.style.background == "orange") {
             console.log("1 strikes");
-            extraInfoSpace.innerHTML = `You got a strike, be more careful!`;
+            extraInfoSpace.innerHTML += `<br> You got a strike, be more careful!`;
             strikes++;
         }
 
@@ -120,7 +121,8 @@ function goLoot() {
         if (strikes >= 3) {
             document.getElementById("strike3").style.visibility = "visible";
             console.log("Game over");
-            gamezone.innerHTML = `<strong>You struck out!! <br> Your game ends here!! </strong> Your score is ${bank} points. <br> Reset and try again!`;
+            extraInfoSpace.innerHTML += `<br> You struck out!!`;
+            gamezone.innerHTML = `Your game ends here!! Your banked gold is ${bank} points. <br> Reset and try again!`;
         }
     });
 
