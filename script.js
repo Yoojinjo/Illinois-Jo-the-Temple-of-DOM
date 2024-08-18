@@ -46,6 +46,11 @@ function scoreUpdate() {
     // bankButton.innerText = `Add ${score} ScorePoints to Bank: ${bank}`;
 }
 
+function disableStart () {
+    startButton.addEventListener("click", () => {
+        startButton.disabled = true;
+})}
+disableStart ()
 function makeGoStop() {
     
     text.innerText = "How far can you push your luck?";
@@ -56,10 +61,11 @@ function makeGoStop() {
     const makeStop = document.createElement("stop");
     makeStop.innerText = "STOP";
     gamezone.appendChild(makeStop);
-
+    
     goLoot();
     scoreUpdate();
 }
+
 
 function goLoot() {
     const goBox = document.querySelector("go");
@@ -126,7 +132,7 @@ function goLoot() {
     });
 }
 /*              things to debug
-1. disable start button, if game has started
+1. XXXX disable start button, if game has started
 2. if player strikes out, then disable start button or convert start button to reset button. disable is probably better, since I already want to do that?
 3. 
 
