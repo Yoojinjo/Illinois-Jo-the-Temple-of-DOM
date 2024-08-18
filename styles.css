@@ -101,3 +101,9 @@ background-color: yellow;
 #indy {
     width: 100px;
 }
+
+#audiocontrols {
+    display: flex;
+    width: auto;
+    justify-content: center;
+}

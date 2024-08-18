@@ -243,9 +243,10 @@ function checkGameOver() {
 1. XXXX disable start button, if game has started
 2. XXXX if player strikes out, then disable start button or convert start button to reset button. disable is probably better, since I already want to do that? - not needed anymore
 3. XXXX reset button must enable start button
+4. fix the flex display for panels
 
             Other game functions to add. 
-1. End the game after 3 banks (call it attempts?). create a space to show how many left?
+1. XXXX End the game after 3 banks (call it attempts?). create a space to show how many left?
 2. store high score as local data
 3. XXXXX Maybe convert strikes to threats, and have multiple threat types spiders, snakes and scorpions? (then re-theme game as treasure hunter, point=> gold)
 4. make visible, temporary picture when player gains points (finds treasure) with point values on it
