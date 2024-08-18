@@ -90,6 +90,8 @@ function goLoot() {
         clearInterval(colorInterval);
         goBox.style.background = "green";
     }
+
+
     //          SCORING
     // onclick of loot box, the score will change by a random amount
     goBox.addEventListener("click", () => {
@@ -98,10 +100,11 @@ function goLoot() {
         extraInfoSpace.innerHTML = `You found ${lootResult} more gold!`;
 
         scoreUpdate();
-        // scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> Temporary Score: ${score}, Bank: ${bank}`;
 
+
+//              Strikes for red and orange
         const clickedbox = document.querySelector("go");
-        // add strikes for red and orange
+        
         if (clickedbox.style.background == "red") {
             console.log("2 strikes");
             monster();
@@ -112,7 +115,7 @@ function goLoot() {
             monster();
         }
 
-        // strike counter
+        //          Strike counters
         monsterAppears();
     });
 
@@ -124,10 +127,14 @@ function goLoot() {
         extraInfoSpace.innerHTML = "";
         scoreInfoSpace.innerHTML = "";
         gamezone.innerHTML = "";
-        document.getElementById("strike1").style.visibility = "hidden";
-        document.getElementById("strike2").style.visibility = "hidden";
-        document.getElementById("strike3").style.visibility = "hidden";
-        enableStart();
+
+        // make all creatures hidden on reset
+        let pictures = document.querySelectorAll(".pic")
+        pictures.forEach(element => {
+            element.style.visibility = "hidden";  
+        });
+        startButton.disabled = false;
+        // enableStart();
     });
 
     // BANKING POINTS
@@ -141,11 +148,11 @@ function goLoot() {
     });
 }
 
-function enableStart() {
-    resetButton.addEventListener("click", () => {
-        startButton.disabled = false;
-    });
-}
+// function enableStart() {
+//     resetButton.addEventListener("click", () => {
+//         startButton.disabled = false;
+//     });
+// }
 
 function scoreUpdate() {
     const tripsRemain = document.querySelector("tripsRemain");
@@ -193,6 +200,13 @@ function monsterAppears() {
         }
     }
 }
+
+function gameover () {
+    if (scorpion>2) {}
+    if (snake>2) {}
+    if (spider>2) {}
+}
+
 /*              things to debug
 1. XXXX disable start button, if game has started
 2. XXXX if player strikes out, then disable start button or convert start button to reset button. disable is probably better, since I already want to do that? - not needed anymore
