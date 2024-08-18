@@ -18,6 +18,7 @@ const threeStrikes = document.getElementsByClassName("pic");
 let score = 0;
 let bank = 0;
 let strikes = 0;
+let trips = 3
 
 //      disable start button after the game is started
 function disableStart() {
@@ -37,6 +38,18 @@ directionButton.addEventListener("click", () => {
 //          Creating the game environment
 startButton.addEventListener("click", () => {
     makeGoStop();
+    const tripsRemain = document.createElement("tripsRemain");
+    tripsRemain.innerHTML = `Trips remaining: ${trips}`;
+    scoreInfoSpace.appendChild(tripsRemain)
+
+    const currentGold = document.createElement("currentGold");
+    currentGold.innerHTML = `Current Gold: ${score}`;
+    scoreInfoSpace.appendChild(currentGold)
+
+    const bankGold = document.createElement("bankGold");
+    bankGold.innerHTML = `Banked Gold: ${bank}`;
+    scoreInfoSpace.appendChild(bankGold)
+
 });
 
 function makeGoStop() {
@@ -60,6 +73,7 @@ function goLoot() {
     const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
     let colorInterval;
     goBox.addEventListener("mouseover", mouseOver);
+    
     function mouseOver() {
         colorInterval = setInterval(() => {
             goBox.style.background =
@@ -77,7 +91,7 @@ function goLoot() {
     goBox.addEventListener("click", () => {
         lootResult = Math.floor(Math.random() * 10);
         score += lootResult;
-        scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> Temporary Score: ${score}, Bank: ${bank}`;
+        // scoreInfoSpace.innerHTML = `You got ${lootResult} points. <br> Temporary Score: ${score}, Bank: ${bank}`;
 
         const clickedbox = document.querySelector("go");
         // add strikes for red and orange
@@ -146,8 +160,8 @@ function enableStart() {
 
 /*              things to debug
 1. XXXX disable start button, if game has started
-2. if player strikes out, then disable start button or convert start button to reset button. disable is probably better, since I already want to do that?
-3. 
+2. XXXX if player strikes out, then disable start button or convert start button to reset button. disable is probably better, since I already want to do that? - not needed anymore
+3. XXXX reset button must enable start button
 
             Other game functions to add. 
 1. End the game after 3 banks (call it attempts?). create a space to show how many left?
