@@ -1,17 +1,27 @@
 # SBA-316-DOM
-For this project, I created a simple push-your-luck game.
 
-Players have 3 attempts to collect points, but will also collect threats, if 3 of the same type of threat are collected, the game ends.
+Description
+For this project, I created a simple push-your-luck game in the style of the baordgame Incan Gold.
 
-Only banked points count toward the final score. 
-Banking will remove all threats, but also end the current run.
+Rules
+1) Players have 3 attempts to collect points, but will also collect threats, if 3 of the same type of threat are collected, the game ends.
+2) Only banked points count toward the final score. 
+3) Banking will remove all threats, but also end the current run.
 
-technical accomplishments
+Built with
+HTML / CSS / Javascript
+
+Technical accomplishments
+1) DOM Manipulation
 create, get, remove elements in JS
 getElements and change properties
+2) JS events
 use onclick, mouseover, mouseoff events
+3) Array methods / functions
 iterate through array to check if game ends
 created multiple functions and sub-functions
-use JS to modify CSS
+4) use JS to modify CSS
 
-currently stuck on data validation where form will not store to local storage if name field is empty. Also can't figure out why submit button is non functional
+Unresolved issues before assignment submission
+-data validation where form will not store to local storage if name field is empty. 
+-unable to make submit button functional
